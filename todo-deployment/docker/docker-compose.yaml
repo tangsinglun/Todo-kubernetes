@@ -1,0 +1,27 @@
+version: "3"
+services:
+  reverseproxy:
+    image: programmingwebsite/todo-reverseproxy
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - backend-todo     
+  backend-todo:
+    image: programmingwebsite/restapi-todo  
+    volumes:
+      - $HOME/.aws:/root/.aws         
+    environment:
+      USERS_TODO_TABLE: $USERS_TODO_TABLE 
+      USERID_INDEX: $USERID_INDEX 
+      TODOS_S3_BUCKET: $TODOS_S3_BUCKET 
+      THUMBNAILS_S3_BUCKET: $THUMBNAILS_S3_BUCKET 
+      SIGNED_URL_EXPIRATION: $SIGNED_URL_EXPIRATION 
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      TODO_VERSION: ${TODO_VERSION} 
+      URL: $URL               
+  frontend:
+    image: programmingwebsite/todo-frontend:local  
+    ports:
+      - "3000:3000"
