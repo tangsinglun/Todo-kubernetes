@@ -1,4 +1,4 @@
-# This is a Joint project collaboration from Alan (Hong Kong) and Andrew (From Egypt)
+# This is a project collaboration work seek coorporation by Andrew (From Egypt)
 # Serverless TODO
 
 To implement this project, you need to implement a simple TODO application using Kubernetes framework.
